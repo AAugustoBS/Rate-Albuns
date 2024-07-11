@@ -1,4 +1,3 @@
-import json
 
 def info_retriever(jsonData):
     extracted = []
@@ -27,3 +26,6 @@ def info_retriever(jsonData):
                     'uri': album['uri']            
                 })
     return extracted
+
+if __name__ == "__main__":
+    print("This is a json handler file")

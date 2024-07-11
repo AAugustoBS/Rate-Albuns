@@ -1,9 +1,9 @@
-from credentials import CLIENT_SECRET, CLIENT_ID
 import requests
 import base64
 import datetime
 from urllib.parse import urlencode
-from utils.json_handler import info_retriever
+import api.utils.json_handler as json_handler
+from api.credential import CLIENT_SECRET, CLIENT_ID
 class SpotifyAPI:
     lastToken = None
     def __init__(self):
@@ -57,7 +57,7 @@ class SpotifyAPI:
         
         req = requests.get(lookup_url, headers=headers)
         
-        response = info_retriever(req.json())
+        response = json_handler.info_retriever(req.json())
         return response
         
    

@@ -3,14 +3,17 @@ from flask_cors import CORS
 from database.database import DatabaseManager
 from auth.token import generate_token
 import bcrypt
-
-
+from api.spotify import SpotifyAPI
+import json
  
 # Initializing flask app
 app = Flask(__name__)
 CORS(app)
 database = DatabaseManager()
+spotifyAPI = SpotifyAPI()
 SECRET_KEY = 'sua_chave_secreta_aqui'
+
+
 @app.route('/register', methods=['POST'])
 def register():
     
@@ -42,6 +45,17 @@ def login():
         return jsonify({"error": "Invalid password!"}), 400
     token = generate_token(SECRET_KEY, user[1])
     return jsonify({"message": "Login realizado com sucesso!", 'token': token,'userName': user[1]}), 200
+
+
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query')
+    if not query:
+        return jsonify({"error": "Query parameter 'query' is required"}), 400
+
+    response = spotifyAPI.search(query)
+    
+    return jsonify({"message": "Search successfully!", 'data': json.dumps(response)}), 200
 # Running app
 if __name__ == '__main__':
     app.run(debug=True)
