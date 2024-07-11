@@ -10,7 +10,7 @@ def info_retriever(jsonData):
                     'id': artist['id'],
                     'type': 'artist',
                     'id': artist['id'],
-                    'images': artist['images'][0]['url'] if artist['images'] else None,
+                    'images': artist['images'][1] if artist['images'] else None,
                     'uri': artist['uri']
                 })
         if item == 'albums':

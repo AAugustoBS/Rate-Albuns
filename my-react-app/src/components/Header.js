@@ -1,9 +1,12 @@
-import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import React, {useState} from 'react';
+import { useLocation, Link,useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+
 const Header = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const { token, userName, logout } = useAuth();
+    const [search, setSearch] = useState('');
     const isLoginOrRegisterPage = location.pathname === '/login' || location.pathname === '/register';
     return (
         <header>
@@ -17,9 +20,9 @@ const Header = () => {
                 </nav>
                 <nav className="basis-1/4 ">
                     <div class="relative p-3  rounded-lg w-full max-w-lg">
-                        <input type="text" class="rounded-md p-3 w-full" placeholder="Search albuns, artists, songs" />
-
-                        <button type="submit" class="absolute right-6 top-6">
+                        <input type="search" onChange={(e) => {setSearch(e.target.value)}} class="rounded-md p-3 w-full" placeholder="Search albuns or artists" />
+                        
+                        <button type="submit" onClick={() => navigate(`/result/${search}`)} class="absolute right-6 top-6">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"

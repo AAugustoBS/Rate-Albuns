@@ -5,6 +5,7 @@ import Register from './Register'; // Ensure correct import paths
 import Login from './Login'; // Ensure correct import paths
 import Main from './Main'; // Ensure correct import paths
 import Header from './components/Header'; // Ensure correct import paths
+import Result from './Result'; 
 import { AuthProvider } from './AuthContext';
 function App() {
   
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/result/:query" element={<Result />} />
             <Route path="/" element={<Main />} />
           </Routes>
       </div>
