@@ -59,6 +59,17 @@ class SpotifyAPI:
         
         response = json_handler.info_retriever(req.json())
         return response
+    
+    def get_artist_albums(self, artist_id):
+        if self.token_expired():
+            self.refresh_token()
+        headers = { "Authorization": f"Bearer {self.lastToken['access_token']}"}
+        endpoint = f"https://api.spotify.com/v1/artists/{artist_id}/albums"
+        data = urlencode({"limit": 50, 'market': 'US','include_groups': 'album'})
+        lookup_url = f"{endpoint}?{data}"
+        req = requests.get(lookup_url, headers=headers)
+        print(req.json())
+        return req.json()
         
    
 # if __name__ == "__main__":

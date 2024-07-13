@@ -10,7 +10,7 @@ const Header = () => {
     const isLoginOrRegisterPage = location.pathname === '/login' || location.pathname === '/register';
     return (
         <header>
-            <div id="header-div" className="flex flex-row bg-black h-14 items-center">
+            <div id="header-div" className="flex flex-row whitespace-nowrap bg-black  h-full w-full items-center">
                 <div className="basis-1/4 text-white"><Link to="/"><h1>Rate Albuns</h1></Link></div>
                 <nav className="basis-1/4 ">
                     <ul className="flex gap-12 ">
@@ -19,7 +19,7 @@ const Header = () => {
                     </ul>
                 </nav>
                 <nav className="basis-1/4 ">
-                    <div class="relative p-3  rounded-lg w-full max-w-lg">
+                    <div class="relative p-3  rounded-lg h-full w-full max-w-lg">
                         <input type="search" onChange={(e) => {setSearch(e.target.value)}} class="rounded-md p-3 w-full" placeholder="Search albuns or artists" />
                         
                         <button type="submit" onClick={() => navigate(`/result/${search}`)} class="absolute right-6 top-6">

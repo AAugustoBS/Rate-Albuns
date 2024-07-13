@@ -1,6 +1,7 @@
 import React, { useEffect, useState  } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams  } from 'react-router-dom';
 import Card from './components/Card'
+
 const Result = () => {
     const [result, setResult] = useState({});
     const {query} = useParams();
@@ -26,14 +27,14 @@ const Result = () => {
       }, [query]);
 
     return (
-        <div className='flex flex-row w-full h-screen'>
+        <div className='flex absolute flex-row w-screen h-screen relative '>
           <div className='basis-1/4'></div>
           <div className='basis-2/4 '>
-            <div className='flex flex-col  h-full items-center px-4 bg-zinc-900'>
+            <div className='flex flex-col whitespace-nowrap h-full items-center px-4 bg-zinc-900'>
               <div className='flex w-full justify-item items-center h-14 '>
                 <h1 className='text-white font-sans text-2xl'>Results</h1>
               </div>
-              <div className=' flex w-full h-full grid justify-items-center items-center'>
+              <div className=' flex w-full flex-nowrap  h-full whitespace-nowrap grid justify-items-center items-center'>
               {result.length > 0 ? (
                   <ul>
                     <div className='grid grid-cols-2 gap-20'> 

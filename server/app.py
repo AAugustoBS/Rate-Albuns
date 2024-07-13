@@ -4,6 +4,7 @@ from database.database import DatabaseManager
 from auth.token import generate_token
 import bcrypt
 from api.spotify import SpotifyAPI
+from api.wikipedia import WikipediaAPI
 import json
  
 # Initializing flask app
@@ -11,6 +12,7 @@ app = Flask(__name__)
 CORS(app)
 database = DatabaseManager()
 spotifyAPI = SpotifyAPI()
+wikipediaAPI = WikipediaAPI()
 SECRET_KEY = 'sua_chave_secreta_aqui'
 
 
@@ -56,6 +58,18 @@ def search():
     response = spotifyAPI.search(query)
     
     return jsonify({"message": "Search successfully!", 'data': json.dumps(response)}), 200
+
+@app.route('/artist', methods=['GET'])
+def artist():
+    artist_id = request.args.get('id')
+    artist_name = request.args.get('name')
+    if not artist_id or not artist_name:
+        return jsonify({"error": "Query parameter 'id' is required"}), 400
+    
+    albuns = spotifyAPI.get_artist_albums(artist_id)
+    artist_info = wikipediaAPI.get_artist_info(artist_name)
+    
+    return jsonify({"message": "Search successfully!", 'albuns': json.dumps(albuns)}), 200
 # Running app
 if __name__ == '__main__':
     app.run(debug=True)
