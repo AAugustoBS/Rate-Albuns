@@ -27,5 +27,19 @@ def info_retriever(jsonData):
                 })
     return extracted
 
+
+def info_album_retriver(albumsData):
+    extracted = []
+    for album in albumsData['items']:
+        extracted.append({
+            'name': album['name'],
+            'id': album['id'],
+            'type': 'album',
+            'artist': album['artists'][0]['name'],
+            'artist_id': album['artists'][0]['id'],
+            'images': album['images'][1] if album['images'] else None,
+            'release_date': album['release_date']            
+        })
+    return extracted
 if __name__ == "__main__":
     print("This is a json handler file")

@@ -68,8 +68,9 @@ class SpotifyAPI:
         data = urlencode({"limit": 50, 'market': 'US','include_groups': 'album'})
         lookup_url = f"{endpoint}?{data}"
         req = requests.get(lookup_url, headers=headers)
-        print(req.json())
-        return req.json()
+        response = json_handler.info_album_retriver(req.json())
+        
+        return response
         
    
 # if __name__ == "__main__":

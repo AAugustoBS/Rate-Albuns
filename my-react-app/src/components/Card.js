@@ -6,7 +6,7 @@ const Card = ({ res }) => {
   const routeArtistChange = (artistName) => {
           navigate(`/artist/${artistName}`);
   }
-    return (<div className='flex flex-col  flex  items-center size-80 rounded-lg shadow-xl max-w-80 hover:bg-zinc-700 transition-colors duration-300'>
+    return (<div className='flex flex-col  flex  items-center   size-80 rounded-lg shadow-xl max-w-80 hover:bg-zinc-700 transition-colors duration-300'>
         
         
 
@@ -24,10 +24,10 @@ const Card = ({ res }) => {
           ) : (
             <>
             <button >
-            <img src={res.images.url} alt={res.name} className="shadow-md rounded-lg" style={{ width: '250px', height: '250px'}} />
+            <img src={res.images.url} alt={res.name} className="shadow-md justify-center rounded-lg" style={{ width: '250px', height: '250px'}} />
             
            
-              <h2 className='text-white'>{res.name}</h2>
+              <h2 className='text-white'>{res.name.length > 30 ? `${res.name.substring(0, 27)}...` : res.name}</h2>
               <p className='text-zinc-300'>{res.artist}</p>
               <p className='text-zinc-300'>{res.release_date.slice(0, 4)}</p>
               </button>

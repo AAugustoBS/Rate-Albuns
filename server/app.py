@@ -67,9 +67,8 @@ def artist():
         return jsonify({"error": "Query parameter 'id' is required"}), 400
     
     albuns = spotifyAPI.get_artist_albums(artist_id)
-    artist_info = wikipediaAPI.get_artist_info(artist_name)
     
-    return jsonify({"message": "Search successfully!", 'albuns': json.dumps(albuns)}), 200
+    return jsonify({"message": "Search successfully!", 'data': json.dumps(albuns)}), 200
 # Running app
 if __name__ == '__main__':
     app.run(debug=True)
